@@ -1,2 +1,3 @@
-# the-demotivator
-the perfect solution against time waste
+# Demotivator
+
+The perfect solution for projects that won't go anywhere

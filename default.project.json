@@ -1,0 +1,9 @@
+{
+  "name": "demotivator",
+  "tree": {
+    "$path": "src",
+    "packages": {
+      "$path": "Packages"
+    }
+  }
+}

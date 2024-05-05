@@ -1,0 +1,8 @@
+# luau sourcemap
+/sourcemap.json
+
+# plugin build
+/demotivator.rbxm
+
+# wally packages
+/Packages
