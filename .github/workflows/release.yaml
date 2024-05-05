@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ok-nick/setup-aftman@v0.4.2
+      - run: wally install
+      - run: rojo sourcemap default.project.json --output sourcemap.json
+      - run: wally-package-types --sourcemap sourcemap.json Packages/
+      - run: rojo build --output demotivator.rbxm
+      - run: echo "VERSION=$(lune run wally-version)" >> "$GITHUB_ENV"
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: demotivator.rbxm
+          tag: ${{ env.VERSION }}
