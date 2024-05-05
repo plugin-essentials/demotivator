@@ -55,12 +55,12 @@ local function loadCurrentUniverse(): Promise.TypedPromise<Universe>
 		return currentUniverse
 	end
 
-	if game.GameId <= 0 then
-		if constants.IS_DEV then
-			currentUniverse = loadUniverse() :: any
-			return currentUniverse :: any
-		end
+	if constants.IS_DEV then
+		currentUniverse = loadUniverse() :: any
+		return currentUniverse :: any
+	end
 
+	if game.GameId <= 0 then
 		currentUniverse = Promise.delay(2e9) :: any
 		return currentUniverse :: any
 	end
