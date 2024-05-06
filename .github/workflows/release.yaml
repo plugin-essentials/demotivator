@@ -17,7 +17,7 @@ jobs:
       - run: rojo sourcemap default.project.json --output sourcemap.json
       - run: wally-package-types --sourcemap sourcemap.json Packages/
       - run: rojo build --output demotivator.rbxm
-      - run: echo "VERSION=$(lune run wally-version)" >> "$GITHUB_ENV"
+      - run: echo "VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
       - uses: ncipollo/release-action@v1
         with:
           artifacts: demotivator.rbxm
