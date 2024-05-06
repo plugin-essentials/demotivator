@@ -25,6 +25,25 @@ local function NextButton(props: NextButtonProps)
 			pressing = pressing,
 		}),
 
+		MouseEnter = function()
+			hovering(true)
+		end,
+
+		MouseLeave = function()
+			hovering(false)
+			pressing(false)
+		end,
+
+		MouseButton1Down = function()
+			pressing(true)
+		end,
+
+		MouseButton1Up = function()
+			pressing(false)
+		end,
+
+		MouseButton1Click = props.onClick,
+
 		vide.create "UIPadding" {
 			PaddingTop = UDim.new(0, 5),
 			PaddingBottom = UDim.new(0, 5),
@@ -59,28 +78,6 @@ local function NextButton(props: NextButtonProps)
 			ImageRectSize = nextIcon.ImageRectSize,
 			ImageColor3 = theme(Enum.StudioStyleGuideColor.ButtonText),
 		},
-
-		vide.action(function(button)
-			vide.cleanup(button.MouseEnter:Connect(function()
-				hovering(true)
-			end))
-
-			vide.cleanup(button.MouseLeave:Connect(function()
-				hovering(false)
-			end))
-
-			vide.cleanup(button.MouseButton1Down:Connect(function()
-				pressing(true)
-			end))
-
-			vide.cleanup(button.MouseButton1Up:Connect(function()
-				pressing(false)
-			end))
-
-			if props.onClick then
-				vide.cleanup(button.MouseButton1Click:Connect(props.onClick))
-			end
-		end),
 	}
 end
 
