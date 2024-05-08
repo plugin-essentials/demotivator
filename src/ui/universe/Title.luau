@@ -1,6 +1,6 @@
 local universes = require(script.Parent.Parent.Parent.universes)
 local vide = require(script.Parent.Parent.Parent.packages.vide)
-local theme = require(script.Parent.Parent.theme)
+local useTheme = require(script.Parent.Parent.Parent.util.useTheme)
 
 export type TitleProps = {
 	universe: universes.Universe,
@@ -16,7 +16,7 @@ local function Title(props: TitleProps)
 		Text = props.universe.name,
 		FontFace = Font.fromEnum(Enum.Font.SourceSansBold),
 		TextSize = 34,
-		TextColor3 = theme(Enum.StudioStyleGuideColor.MainText),
+		TextColor3 = useTheme(Enum.StudioStyleGuideColor.MainText),
 		TextWrapped = true,
 		TextXAlignment = Enum.TextXAlignment.Left,
 	}

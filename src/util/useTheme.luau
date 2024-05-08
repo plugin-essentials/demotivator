@@ -1,5 +1,5 @@
 local vide = require(script.Parent.Parent.packages.vide)
-local theme = require(script.Parent.Parent.ui.theme)
+local studio = settings():GetService("Studio")
 
 local GUI_STATE_MODIFIER_MAP = {
 	[Enum.GuiState.Idle] = Enum.StudioStyleGuideModifier.Default,
@@ -8,10 +8,15 @@ local GUI_STATE_MODIFIER_MAP = {
 	[Enum.GuiState.NonInteractable] = Enum.StudioStyleGuideModifier.Disabled,
 }
 
-local function useTheme(color: Enum.StudioStyleGuideColor, guiState: Enum.GuiState | vide.Source<Enum.GuiState>)
+local theme = vide.source(studio.Theme)
+studio.ThemeChanged:Connect(function()
+	theme(studio.Theme)
+end)
+
+local function useTheme(color: Enum.StudioStyleGuideColor, guiState: (Enum.GuiState | vide.Source<Enum.GuiState>)?)
 	return function()
-		local modifier = GUI_STATE_MODIFIER_MAP[vide.read(guiState)]
-		return theme(color, modifier)()
+		local modifier = if guiState then GUI_STATE_MODIFIER_MAP[vide.read(guiState)] else nil
+		return theme():GetColor(color, modifier)
 	end
 end
 

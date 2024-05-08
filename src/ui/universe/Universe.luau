@@ -1,8 +1,8 @@
 local NextButton = require(script.Parent.NextButton)
 local universes = require(script.Parent.Parent.Parent.universes)
 local vide = require(script.Parent.Parent.Parent.packages.vide)
+local useTheme = require(script.Parent.Parent.Parent.util.useTheme)
 local Spinner = require(script.Parent.Parent.Spinner)
-local theme = require(script.Parent.Parent.theme)
 local Progress = require(script.Parent.Progress)
 local Thumbnail = require(script.Parent.Thumbnail)
 local Title = require(script.Parent.Title)
@@ -76,7 +76,7 @@ local function Universe(props: UniverseProps)
 			NextButton { onClick = props.onNext },
 		}
 	end, function()
-		return Spinner { color = theme(Enum.StudioStyleGuideColor.SubText) }
+		return Spinner { color = useTheme(Enum.StudioStyleGuideColor.SubText) }
 	end)
 end
 

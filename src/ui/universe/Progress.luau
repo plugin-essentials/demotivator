@@ -1,6 +1,6 @@
 local universes = require(script.Parent.Parent.Parent.universes)
 local vide = require(script.Parent.Parent.Parent.packages.vide)
-local theme = require(script.Parent.Parent.theme)
+local useTheme = require(script.Parent.Parent.Parent.util.useTheme)
 
 local PROGRESS_BAR_PERIOD = 0.5
 local PROGRESS_BAR_DAMPING = 1
@@ -15,8 +15,8 @@ export type ProgressProps = {
 
 local function Progress(props: ProgressProps)
 	local color = if props.percentage >= 1
-		then theme(Enum.StudioStyleGuideColor.MainButton)
-		else theme(Enum.StudioStyleGuideColor.ErrorText)
+		then useTheme(Enum.StudioStyleGuideColor.MainButton)
+		else useTheme(Enum.StudioStyleGuideColor.ErrorText)
 	local message = if props.percentage >= 1 then props.messageComplete else props.messageIncomplete
 
 	local progressBarFill = vide.source(0)
@@ -35,7 +35,7 @@ local function Progress(props: ProgressProps)
 			Text = props.title,
 			FontFace = Font.fromEnum(Enum.Font.SourceSansBold),
 			TextSize = 25,
-			TextColor3 = theme(Enum.StudioStyleGuideColor.MainText),
+			TextColor3 = useTheme(Enum.StudioStyleGuideColor.MainText),
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextYAlignment = Enum.TextYAlignment.Top,
 		},
@@ -47,7 +47,7 @@ local function Progress(props: ProgressProps)
 			Position = UDim2.fromScale(0, 1),
 			Size = UDim2.new(1, 0, 0, 8),
 
-			BackgroundColor3 = theme(Enum.StudioStyleGuideColor.Dark),
+			BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Dark),
 
 			vide.create "Frame" {
 				Name = "completed",
@@ -72,7 +72,7 @@ local function Progress(props: ProgressProps)
 			Text = message,
 			FontFace = Font.fromEnum(Enum.Font.SourceSans),
 			TextSize = 20,
-			TextColor3 = theme(Enum.StudioStyleGuideColor.SubText),
+			TextColor3 = useTheme(Enum.StudioStyleGuideColor.SubText),
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextYAlignment = Enum.TextYAlignment.Top,
 		},
