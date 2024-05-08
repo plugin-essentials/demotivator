@@ -1,7 +1,7 @@
 local vide = require(script.Parent.Parent.packages.vide)
 local theme = require(script.Parent.Parent.ui.theme)
 
-local function useColor(color: Enum.StudioStyleGuideColor, guiState: vide.Source<Enum.GuiState>)
+local function useTheme(color: Enum.StudioStyleGuideColor, guiState: vide.Source<Enum.GuiState>)
 	return vide.switch(guiState) {
 		[Enum.GuiState.Idle] = theme(color, Enum.StudioStyleGuideModifier.Default),
 		[Enum.GuiState.Hover] = theme(color, Enum.StudioStyleGuideModifier.Hover),
@@ -10,4 +10,4 @@ local function useColor(color: Enum.StudioStyleGuideColor, guiState: vide.Source
 	}
 end
 
-return useColor
+return useTheme

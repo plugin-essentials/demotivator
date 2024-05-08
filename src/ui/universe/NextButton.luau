@@ -1,6 +1,6 @@
 local lucide = require(script.Parent.Parent.Parent.packages.lucide)
 local vide = require(script.Parent.Parent.Parent.packages.vide)
-local useColor = require(script.Parent.Parent.Parent.util.useColor)
+local useTheme = require(script.Parent.Parent.Parent.util.useTheme)
 
 export type NextButtonProps = {
 	onClick: () -> ()?,
@@ -17,7 +17,7 @@ local function NextButton(props: NextButtonProps)
 		Position = UDim2.fromScale(1, 1),
 		Size = UDim2.new(0, 40, 0, 40),
 
-		BackgroundColor3 = useColor(Enum.StudioStyleGuideColor.Button, guiState),
+		BackgroundColor3 = useTheme(Enum.StudioStyleGuideColor.Button, guiState),
 
 		MouseButton1Click = props.onClick,
 
@@ -37,7 +37,7 @@ local function NextButton(props: NextButtonProps)
 		vide.create "UIStroke" {
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 			Thickness = 1,
-			Color = useColor(Enum.StudioStyleGuideColor.ButtonBorder, guiState),
+			Color = useTheme(Enum.StudioStyleGuideColor.ButtonBorder, guiState),
 		},
 
 		vide.create "ImageLabel" {
@@ -52,7 +52,7 @@ local function NextButton(props: NextButtonProps)
 			Image = nextIcon.Url,
 			ImageRectOffset = nextIcon.ImageRectOffset,
 			ImageRectSize = nextIcon.ImageRectSize,
-			ImageColor3 = useColor(Enum.StudioStyleGuideColor.ButtonText, guiState),
+			ImageColor3 = useTheme(Enum.StudioStyleGuideColor.ButtonText, guiState),
 		},
 	}
 end
